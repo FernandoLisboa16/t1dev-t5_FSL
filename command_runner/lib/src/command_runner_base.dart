@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-class CommandRunner {
-  // Runs the command-line application logic with the given arguments.
-  Future<void> run(List<String> input) async {
-    print('CommandRunner received arguments: $input');
-=======
-
 import 'dart:collection';
 import 'dart:io';
 
@@ -53,6 +46,5 @@ Future<void> run(List<String> input) async {
     final exeFile = Platform.script.path.split('/').last;
 
     return 'Usage: dart bin/$exeFile <command> [commandArg?] [...options?]';
->>>>>>> dddec4e (LICAO 05 - Fiz das tarefas 02 a 03, veja se esta correto e me avise)
   }
 }

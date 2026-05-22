@@ -1017,9 +1017,7 @@ Saida:
 CommandRunner received arguments:
 [wikipedia, Computer_programming]
 
------------------------------------------------------------------------------ */
-
-/* -----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 Versao: 0.0.15
 
@@ -1040,9 +1038,7 @@ Tambem foi implementado:
 - novo fluxo principal do CLI
 - substituicao definitiva da logica antiga baseada em if/else
 
-Codigo valido ate aqui:
-
------------------------------------------------------------------------------ */
+Codigo:
 
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -1053,8 +1049,6 @@ void main(List<String> arguments) async {
 
   await runner.run(arguments);
 }
-
-/* -----------------------------------------------------------------------------
 
 Saida padrao ao executar o codigo:
 
@@ -1074,4 +1068,20 @@ Saida:
 CommandRunner received arguments:
 [wikipedia, Dart]
 
------------------------------------------------------------------------------ */ 
+-------------------------------------------------------------------------------
+*/ 
+
+//Codigo valido ate aqui
+
+//Codigo:
+
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:command_runner/command_runner.dart';
+
+void main(List<String> arguments) async {
+  var runner = CommandRunner();
+
+  await runner.run(arguments);
+}
+
