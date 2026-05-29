@@ -1068,12 +1068,10 @@ Saida:
 CommandRunner received arguments:
 [wikipedia, Dart]
 
--------------------------------------------------------------------------------
-*/ 
+------------------------------------------------------------------------------- 
+Codigo valido ate aqui
 
-//Codigo valido ate aqui
-
-//Codigo:
+Codigo:
 
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -1085,3 +1083,36 @@ void main(List<String> arguments) async {
   await runner.run(arguments);
 }
 
+*/
+
+
+import 'package:command_runner/command_runner.dart';
+
+const version = '0.0.1';
+
+void main(List<String> arguments) {
+  var commandRunner = CommandRunner(
+    onError: (Object error) {
+      if (error is Error) {
+        throw error;
+      }
+
+      if (error is Exception) {
+        print(error);
+      }
+    }
+  )..addCommand(HelpCommand());
+
+  commandRunner.run(arguments);
+}
+
+/*
+Comando: dart run bin/cli.dart
+Saida: Usage: dart bin/cli.dart <command> [commandArg?] [...options?]
+
+Comando: dart run bin/cli.dart teste
+Saida: ArgumentException: The first word of input must be a command.
+
+Comando: dart run bin/cli.dart help
+Saida: Available commands: help
+*/
