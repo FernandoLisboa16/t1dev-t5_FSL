@@ -48,16 +48,8 @@ enum ConsoleColor {
   final int r;
   final int g;
   final int b;
-}
 
-enum ConsoleColor {
   // ... (existing enum values)
-
-  const ConsoleColor(this.r, this.g, this.b);
-
-  final int r;
-  final int g;
-  final int b;
 
   /// Change text color for all future output (until reset)
   /// ```dart
