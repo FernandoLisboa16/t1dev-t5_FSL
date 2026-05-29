@@ -49,11 +49,6 @@ enum ConsoleColor {
   final int g;
   final int b;
 
-<<<<<<< HEAD
-  // ... (existing enum values)
-
-=======
->>>>>>> 94718f3 (Fiz a tarefa 2 atualizada brasileiro 2026 copa do mundo)
   /// Change text color for all future output (until reset)
   String get enableForeground =>
       '$ansiEscapeLiteral[38;2;$r;$g;${b}m';
