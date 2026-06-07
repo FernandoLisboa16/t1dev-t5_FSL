@@ -6,17 +6,13 @@ import 'arguments.dart';
 import 'exceptions.dart';
 
 class CommandRunner {
-  CommandRunner({
-    this.onOutput,
-    this.onError,
-  });
+  CommandRunner({this.onError});
 
   final Map<String, Command> _commands = <String, Command>{};
 
   UnmodifiableSetView<Command> get commands =>
       UnmodifiableSetView<Command>(<Command>{..._commands.values});
 
-  FutureOr<void> Function(String)? onOutput;
   FutureOr<void> Function(Object)? onError;
 
   Future<void> run(List<String> input) async {
@@ -25,12 +21,7 @@ class CommandRunner {
 
       if (results.command != null) {
         Object? output = await results.command!.run(results);
-
-        if (onOutput != null) {
-          await onOutput!(output.toString());
-        } else {
-          print(output.toString());
-        }
+        print(output.toString());
       }
     } on Exception catch (exception) {
       if (onError != null) {
@@ -53,6 +44,7 @@ class CommandRunner {
       return results;
     }
 
+    // Throw an exception if the command is not recognized.
     if (_commands.containsKey(input.first)) {
       results.command = _commands[input.first];
       input = input.sublist(1);
@@ -64,6 +56,7 @@ class CommandRunner {
       );
     }
 
+    // Throw an exception if multiple commands are provided.
     if (results.command != null &&
         input.isNotEmpty &&
         _commands.containsKey(input.first)) {
@@ -74,6 +67,7 @@ class CommandRunner {
       );
     }
 
+    // Section: Handle options, including flags.
     Map<Option, Object?> inputOptions = {};
 
     int i = 0;
@@ -82,6 +76,7 @@ class CommandRunner {
       if (input[i].startsWith('-')) {
         var base = _removeDash(input[i]);
 
+        // Throw an exception if an option is not recognized.
         var option = results.command!.options.firstWhere(
           (option) => option.name == base || option.abbr == base,
           orElse: () {
@@ -100,6 +95,7 @@ class CommandRunner {
         }
 
         if (option.type == OptionType.option) {
+          // Throw an exception if an option requires an argument.
           if (i + 1 >= input.length) {
             throw ArgumentException(
               'Option ${option.name} requires an argument',
@@ -122,6 +118,7 @@ class CommandRunner {
           i++;
         }
       } else {
+        // Throw an exception if more than one positional argument is provided.
         if (results.commandArg != null &&
             results.commandArg!.isNotEmpty) {
           throw ArgumentException(
@@ -160,3 +157,39 @@ class CommandRunner {
     return input;
   }
 }
+
+class CommandRunner {
+  CommandRunner({this.onOutput, this.onError});
+
+  /// If not null, this method is used to handle output. Useful if you want to
+  /// execute code before the output is printed to the console, or if you
+  /// want to do something other than print output the console.
+  /// If null, the onInput method will [print] the output.
+  FutureOr<void> Function(String)? onOutput;
+
+  FutureOr<void> Function(Object)? onError;
+
+  // ... rest of the class
+}
+
+  Future<void> run(List<String> input) async {
+    try {
+      final ArgResults results = parse(input);
+      if (results.command != null) {
+        Object? output = await results.command!.run(results);
+        if (onOutput != null) {
+          await onOutput!(output.toString());
+        } else {
+          print(output.toString());
+        }
+      }
+    } on Exception catch (exception) {
+      if (onError != null) {
+        onError!(exception);
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+
