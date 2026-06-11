@@ -1083,8 +1083,10 @@ void main(List<String> arguments) async {
   await runner.run(arguments);
 }
 
-*/
+-------------------------------------------------------------------------------
+Versao: 0.0.16
 
+Data: 07/06/2026
 
 import 'package:command_runner/command_runner.dart';
 
@@ -1115,4 +1117,100 @@ Saida: ArgumentException: The first word of input must be a command.
 
 Comando: dart run bin/cli.dart help
 Saida: Available commands: help
+-----------------------------------------------------------------------------
+
+Versao: 0.0.17
+
+Data: 11/06/2026
+
+Descricao do codigo: Tarefa 3: Use o onOutputretorno de chamada
+#
+Por fim, atualize seu aplicativo principal para usar o novo onOutputrecurso.
+
+Abra o cli/bin/cli.dartarquivo.
+
+Atualize a mainfunção para passá-la onOutputpara o CommandRunner. Você também precisará adicionar uma importação para console.darttornar a writefunção disponível.
+
+import 'package:command_runner/command_runner.dart';
+
+const version = '0.0.1';
+
+void main(List<String> arguments) {
+  var commandRunner = CommandRunner(
+    onOutput: (String output) async {
+      await write(output);
+    },
+    onError: (Object error) {
+      if (error is Error) {
+        throw error;
+      }
+      if (error is Exception) {
+        print(error);
+      }
+    },
+  )..addCommand(HelpCommand());
+  commandRunner.run(arguments);
+}
+Tarefa 4: Teste as alterações
+#
+Teste a versão aprimorada HelpCommande o onOutputretorno de chamada.
+
+Abra o terminal e navegue até o clidiretório.
+
+Execute o comando dart run bin/cli.dart help --verbose.
+
+Você deverá ver informações detalhadas sobre o uso do helpcomando, impressas utilizando a writefunção personalizada.
+
+codigo:
 */
+
+import 'package:command_runner/command_runner.dart';
+
+const version = '0.0.17';
+
+void main(List<String> arguments) {
+  var commandRunner = CommandRunner(
+    onOutput: (String output) async {
+      await write(output);
+    },
+    onError: (Object error) {
+      if (error is Error) {
+        throw error;
+      }
+      if (error is Exception) {
+        print(error);
+      }
+    },
+  )..addCommand(HelpCommand());
+  commandRunner.run(arguments);
+}
+var commandRunner = CommandRunner(
+    onOutput: (String output) async {
+      await write(output);
+    },
+    onError: (Object error) {
+      if (error is Error) {
+        throw error;
+      }
+      if (error is Exception) {
+        print(error);
+      }
+    },
+  )..addCommand(HelpCommand());
+  commandRunner.run(arguments);
+}
+/*
+Saida padrao ao executar o codigo:
+
+Comando:
+dart run bin/cli.dart help --verbose
+
+Saida:
+Usage: dart bin/cli.dart <command> [commandArg?] [...options?]
+help: Prints usage information to the command line.
+           Prints this usage information
+           Options:
+           verbose: When true, this command will print each command and its options.
+           command: When a command is passed as an argument, prints only that command's verbose usage.
+-------------------------------------------------------------------------------
+
