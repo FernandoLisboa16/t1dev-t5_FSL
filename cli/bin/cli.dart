@@ -1,6 +1,6 @@
+/*
 
-
-/*-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 
 
@@ -132,8 +132,6 @@ Comando: dart bin/cli.dart version
 Saida:Dartpedia CLI version 0.0.2
 
 -------------------------------------------------------------------------------
-*/
-/*
 Descricao do codigo
 Adicione uma printUsage funcao: Para tornar a saida mais amigavel ao usuario, crie uma funcao separada para exibir as informacoes de uso. Coloque essa funcao fora e abaixo da sua mainfuncao principal.
 
@@ -604,10 +602,9 @@ void printUsage() {
 // comando: Looking up article about "$articleTitle". please wait.
 //	    Here ya go!
 //	    Pretend this is an article about "articletitle
-*/
 
 
-/* -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
 
 Versao: 0.0.10
 
@@ -666,9 +663,9 @@ dart run bin/cli.dart
 Saida:
 Wikipedia API initialized.
 
------------------------------------------------------------------------------ */
+----------------------------------------------------------------------------- 
 
-/* -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
 
 Versao: 0.0.11
 
@@ -746,9 +743,9 @@ Looking up articles about "Dart_(programming_language)". Please wait.
 
 {JSON da Wikipedia}
 
------------------------------------------------------------------------------ */
+----------------------------------------------------------------------------- 
 
-/* -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
 
 Versao: 0.0.12
 
@@ -852,9 +849,9 @@ Looking up articles about "Dart_(programming_language)". Please wait.
 
 {JSON da Wikipedia}
 
------------------------------------------------------------------------------ */
+-----------------------------------------------------------------------------
 
-/* -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
 
 Versao: 0.0.13
 
@@ -972,9 +969,9 @@ Looking up articles about "Flutter_(software)". Please wait.
   "title": "Flutter (software)"
 }
 
------------------------------------------------------------------------------ */
+-----------------------------------------------------------------------------
 
-/* -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
 
 Versao: 0.0.14
 
@@ -1108,7 +1105,6 @@ void main(List<String> arguments) {
   commandRunner.run(arguments);
 }
 
-/*
 Comando: dart run bin/cli.dart
 Saida: Usage: dart bin/cli.dart <command> [commandArg?] [...options?]
 
@@ -1163,7 +1159,6 @@ Você deverá ver informações detalhadas sobre o uso do helpcomando, impressas
 
 codigo:
 */
-
 import 'package:command_runner/command_runner.dart';
 
 const version = '0.0.17';
@@ -1182,35 +1177,6 @@ void main(List<String> arguments) {
       }
     },
   )..addCommand(HelpCommand());
+
   commandRunner.run(arguments);
 }
-var commandRunner = CommandRunner(
-    onOutput: (String output) async {
-      await write(output);
-    },
-    onError: (Object error) {
-      if (error is Error) {
-        throw error;
-      }
-      if (error is Exception) {
-        print(error);
-      }
-    },
-  )..addCommand(HelpCommand());
-  commandRunner.run(arguments);
-}
-/*
-Saida padrao ao executar o codigo:
-
-Comando:
-dart run bin/cli.dart help --verbose
-
-Saida:
-Usage: dart bin/cli.dart <command> [commandArg?] [...options?]
-help: Prints usage information to the command line.
-           Prints this usage information
-           Options:
-           verbose: When true, this command will print each command and its options.
-           command: When a command is passed as an argument, prints only that command's verbose usage.
--------------------------------------------------------------------------------
-
