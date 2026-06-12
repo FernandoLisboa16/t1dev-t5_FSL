@@ -1,4 +1,4 @@
-# dartpedia
+## dartpedia
 
 Projeto desenvolvido pela turma T1DEV-T5 como atividade prática para aplicação dos conceitos de desenvolvimento em Dart, consumo de APIs, testes automatizados e construção de aplicações de linha de comando.
 
