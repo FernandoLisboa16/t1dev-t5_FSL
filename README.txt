@@ -1,59 +1,105 @@
-# Interface de Linha de Comando e Integração com API Wikipedia
+dartpedia
 
-Este projeto consiste numa aplicação modular desenvolvida em Dart, cobrindo o cronograma completo das lições 1 a 12. O objetivo do repositório é demonstrar a evolução cronológica no ecossistema Dart: iniciando pelos conceitos fundamentais da linguagem, passando pela criação e estruturação de utilitários de Linha de Comando (CLI), e culminando na arquitetura de subcomandos assíncronos que consomem dados em tempo real da API pública da Wikipedia.
+Projeto desenvolvido pela turma T1DEV-T5 como atividade prática para aplicação dos conceitos de desenvolvimento em Dart, consumo de APIs, testes automatizados e construção de aplicações de linha de comando.
 
-## O que o projeto faz
+Professor: Irineu Moura
 
-O sistema unifica o progresso de aprendizagem e atua como um assistente de terminal que permite ao utilizador:
-1. Validar a sintaxe básica, manipulação de variáveis, coleções e lógica de controlo em Dart.
-2. Configurar parâmetros globais de execução de terminal (como modos de depuração e verbosidade).
-3. Executar comandos estruturados de gestão de utilizadores através de subcomandos acoplados.
-4. Realizar pesquisas diretas na Wikipedia através do terminal, obtendo e exibindo o resumo formatado dos artigos consultados em tempo real.
+Líder do Projeto: Fernando Lisboa
 
-## Como o projeto funciona
+Integrantes:
 
-A aplicação está dividida em três componentes autónomos (pastas) que demonstram o amadurecimento técnico do código:
+Fernando Lisboa
+Felipe Rosa
+Caroline Sagaes
+Myguel Dusse
+Sobre o projeto
 
- Fundamentos e Camada Base (`cli/` - Lições 1 a 7):  Lições 1 a 4:* Estabelecem a base da linguagem, abordando tipagem, funções, estruturas de repetição e manipulação de coleções nativas.
+O Dartpedia é uma aplicação de linha de comando que consome a API da Wikipédia para realizar pesquisas e consultar artigos diretamente pelo terminal.
 
-   Lições 5 a 7: Utilizam a biblioteca `dart:io` para gerir o fluxo de entrada e saída padrão (`stdin` e `stdout`). O parsing dos argumentos iniciais é delegado ao pacote `args`, que valida as opções e sinalizações (*flags*) inseridas no terminal.
+O projeto foi desenvolvido de forma modular, separando as responsabilidades em diferentes pacotes para facilitar a organização, manutenção e reutilização do código.
 
- Motor de Comandos (`command_runner/` - Lições 8 e 9): Centraliza a execução através do pacote `args/command_runner`. Esta arquitetura mapeia os argumentos introduzidos e os direciona para classes isoladas que estendem a classe `Command`, permitindo uma estrutura de comandos aninhados (ex: `modulo comando subcomando --opção`).
+Funcionalidades
+Pesquisa de artigos na Wikipédia
+Exibição de links relacionados ao termo pesquisado
+Consulta de artigos por título
+Exibição de resumos de artigos
+Comando de ajuda com informações detalhadas
+Saída formatada e colorida no terminal
+Registro de erros e eventos em arquivos de log
+Desserialização de respostas JSON da API da Wikipédia
+Testes automatizados para validação dos modelos de dados
+Estrutura do projeto
+t1dev-t5/
+│
+├── cli/
+│   ├── Aplicação principal
+│   ├── Comandos da linha de comando
+│   └── Sistema de logs
+│
+├── command_runner/
+│   ├── Framework de comandos
+│   ├── Parser de argumentos
+│   ├── Sistema de ajuda
+│   └── Utilitários de console
+│
+├── wikipedia/
+│   ├── Comunicação com a API da Wikipédia
+│   ├── Modelos de dados
+│   └── Testes automatizados
+│
+└── pubspec.yaml
+Tecnologias utilizadas
+Dart
+API REST da Wikipédia
+HTTP
+Logging
+Test
+Como executar
 
- Núcleo de Integração e Avançado (`wikipedia/` - Lições 10 a 12): * *Lições 10 e 11:* Executam requisições HTTP assíncronas utilizando o pacote `http`. Ao receber a resposta em formato JSON da API da Wikipedia, o sistema realiza a deserialização dos dados para estruturas do tipo `Map` e popula classes de modelo tipadas.
+Clone o repositório:
 
-   Lição 12:* Introduz o tratamento avançado de exceções robustas, gestão de erros de rede, testes unitários básicos e finalização do ciclo de vida da aplicação CLI.
+git clone <url-do-repositorio>
 
--------------------------------------------------------------------------------
+Acesse a pasta do projeto:
 
-## Comandos de Instalação e Execução
+cd t1dev-t5
 
-### Pré-requisitos
+Instale as dependências:
 
- Dart SDK instalado (versão 3.0 ou superior recomendada).
+dart pub get
 
- Ligação à internet ativa (necessária para o módulo Wikipedia).
+Execute a aplicação:
 
-### 1. Resolução de Dependências
+dart run cli/bin/cli.dart
+Exemplos de uso
 
-Antes de executar os módulos, é necessário obter os pacotes necessários em cada diretório. Execute os seguintes comandos a partir da raiz do projeto:
+Exibir ajuda:
 
-```bash
+dart run cli/bin/cli.dart help
 
-cd cli && dart pub get
+Exibir ajuda detalhada:
 
-cd ../command_runner && dart pub get
+dart run cli/bin/cli.dart help --verbose
 
-cd ../wikipedia && dart pub get
+Pesquisar artigos:
 
--------------------------------------------------------------------------------
+dart run cli/bin/cli.dart search dart
 
-## Membros do grupo:
+Pesquisar utilizando a opção "Estou com sorte":
 
-Lider: Fernando da Silva Lisboa
+dart run cli/bin/cli.dart search dart --im-feeling-lucky
 
-Liderados: Myguel Dusse
+Consultar um artigo específico:
 
-Liderados: Felipe Rosa
+dart run cli/bin/cli.dart article "Dart_(programming_language)"
+Logs
 
-Liderados: Caroline Sagaes
+A aplicação registra erros e eventos em arquivos de log gerados automaticamente dentro do diretório:
+
+logs/
+
+Esses registros auxiliam na identificação e correção de possíveis problemas durante a execução da aplicação.
+
+Considerações finais
+
+O Dartpedia foi desenvolvido com o objetivo de praticar conceitos importantes da linguagem Dart, incluindo programação orientada a objetos, consumo de APIs, manipulação de JSON, testes automatizados, organização de projetos em múltiplos pacotes e desenvolvimento de aplicações de linha de comando.
