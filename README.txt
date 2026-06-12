@@ -75,10 +75,6 @@ dart run cli/bin/cli.dart
 
 # Exibir ajuda:
 
-dart run cli/bin/cli.dart help
-
-# Exibir ajuda detalhada:
-
 dart run cli/bin/cli.dart help --verbose
 
 # Pesquisar artigos:
