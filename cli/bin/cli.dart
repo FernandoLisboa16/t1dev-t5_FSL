@@ -1158,7 +1158,6 @@ Execute o comando dart run bin/cli.dart help --verbose.
 Você deverá ver informações detalhadas sobre o uso do helpcomando, impressas utilizando a writefunção personalizada.
 
 codigo:
-*/
 import 'package:command_runner/command_runner.dart';
 
 const version = '0.0.17';
@@ -1180,7 +1179,7 @@ void main(List<String> arguments) {
 
   commandRunner.run(arguments);
 }
-/*
+
 -----------------------------------------------------------------------------
 
 Versao: 0.0.18
