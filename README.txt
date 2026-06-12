@@ -1,4 +1,4 @@
-dartpedia
+# dartpedia
 
 Projeto desenvolvido pela turma T1DEV-T5 como atividade prática para aplicação dos conceitos de desenvolvimento em Dart, consumo de APIs, testes automatizados e construção de aplicações de linha de comando.
 
@@ -6,7 +6,7 @@ Professor: Irineu Moura
 
 Líder do Projeto: Fernando Lisboa
 
-Integrantes:
+# Integrantes:
 
 Fernando Lisboa
 Felipe Rosa
@@ -18,7 +18,7 @@ O Dartpedia é uma aplicação de linha de comando que consome a API da Wikipéd
 
 O projeto foi desenvolvido de forma modular, separando as responsabilidades em diferentes pacotes para facilitar a organização, manutenção e reutilização do código.
 
-Funcionalidades
+# Funcionalidades
 Pesquisa de artigos na Wikipédia
 Exibição de links relacionados ao termo pesquisado
 Consulta de artigos por título
@@ -48,7 +48,7 @@ t1dev-t5/
 │   └── Testes automatizados
 │
 └── pubspec.yaml
-Tecnologias utilizadas
+# Tecnologias utilizadas
 Dart
 API REST da Wikipédia
 HTTP
@@ -56,7 +56,7 @@ Logging
 Test
 Como executar
 
-Clone o repositório:
+# Clone o repositório:
 
 git clone <url-do-repositorio>
 
@@ -64,24 +64,24 @@ Acesse a pasta do projeto:
 
 cd t1dev-t5
 
-Instale as dependências:
+# Instale as dependências:
 
 dart pub get
 
 Execute a aplicação:
 
 dart run cli/bin/cli.dart
-Exemplos de uso
+# Exemplos de uso
 
-Exibir ajuda:
+# Exibir ajuda:
 
 dart run cli/bin/cli.dart help
 
-Exibir ajuda detalhada:
+# Exibir ajuda detalhada:
 
 dart run cli/bin/cli.dart help --verbose
 
-Pesquisar artigos:
+# Pesquisar artigos:
 
 dart run cli/bin/cli.dart search dart
 
@@ -89,10 +89,10 @@ Pesquisar utilizando a opção "Estou com sorte":
 
 dart run cli/bin/cli.dart search dart --im-feeling-lucky
 
-Consultar um artigo específico:
+# Consultar um artigo específico:
 
 dart run cli/bin/cli.dart article "Dart_(programming_language)"
-Logs
+# Logs
 
 A aplicação registra erros e eventos em arquivos de log gerados automaticamente dentro do diretório:
 
