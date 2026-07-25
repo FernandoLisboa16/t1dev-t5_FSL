@@ -3,7 +3,10 @@ import 'dart:collection';
 
 import '../command_runner.dart';
 
-enum OptionType { flag, option }
+enum OptionType {
+  flag,
+  option,
+}
 
 abstract class Argument {
   String get name;
@@ -64,20 +67,19 @@ abstract class Command extends Argument {
   late CommandRunner runner;
 
   @override
-  String? help;
+  String? get help;
 
   @override
-  String? defaultValue;
+  String? get defaultValue;
 
   @override
-  String? valueHelp;
+  String? get valueHelp;
 
   final List<Option> _options = [];
 
   UnmodifiableSetView<Option> get options =>
       UnmodifiableSetView(_options.toSet());
 
-  // A flag is an [Option] that's treated as a boolean.
   void addFlag(
     String name, {
     String? help,
@@ -96,7 +98,6 @@ abstract class Command extends Argument {
     );
   }
 
-  // An option is an [Option] that takes a value.
   void addOption(
     String name, {
     String? help,
@@ -120,7 +121,7 @@ abstract class Command extends Argument {
 
   @override
   String get usage {
-    return '$name: $description';
+    return '$name:  $description';
   }
 }
 
@@ -131,7 +132,6 @@ class ArgResults {
 
   Map<Option, Object?> options = {};
 
-  // Returns true if the flag exists.
   bool flag(String name) {
     for (var option in options.keys.where(
       (option) => option.type == OptionType.flag,

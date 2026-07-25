@@ -4,16 +4,18 @@ import 'package:command_runner/command_runner.dart';
 
 class HelpCommand extends Command {
   HelpCommand() {
+    // Flag para exibir todas as informações dos comandos
     addFlag(
       'verbose',
       abbr: 'v',
-      help: 'When true, this command will print each command and its options.',
+      help: 'Exibe todos os comandos com seus detalhes.',
     );
 
+    // Opção para mostrar ajuda de um comando específico
     addOption(
       'command',
       abbr: 'c',
-      help: "When a command is passed as an argument, prints only that command's verbose usage.",
+      help: 'Mostra informações detalhadas de um comando específico.',
     );
   }
 
@@ -21,10 +23,16 @@ class HelpCommand extends Command {
   String get name => 'help';
 
   @override
-  String get description => 'Prints usage information to the command line.';
+  String get description => 'Exibe informações de ajuda dos comandos.';
 
   @override
-  String? get help => 'Prints this usage information';
+  String? get help => 'Mostra esta mensagem de ajuda.';
+
+  @override
+  String? get defaultValue => null;
+
+  @override
+  String? get valueHelp => null;
 
   @override
   FutureOr<Object?> run(ArgResults args) async {
@@ -32,7 +40,8 @@ class HelpCommand extends Command {
 
     buffer.writeln(runner.usage);
 
-    // 1. Cenário: Flag --verbose ativada
+    // Se a flag --verbose for utilizada,
+    // exibe todos os comandos detalhadamente.
     if (args.flag('verbose')) {
       for (var cmd in runner.commands) {
         buffer.write(_renderCommandVerbose(cmd));
@@ -40,27 +49,27 @@ class HelpCommand extends Command {
       return buffer.toString();
     }
 
-   // 2. Cenário: Opção --command fornecida
-    final commandArg = args.getOption('command');
-    
-    // CORRIGIDO: Forçamos o Dart a entender o .input como uma String aceitável para o null-safety
-    final input = commandArg.input as String?;
+    // Se foi passada a opção --command,
+    // mostra apenas o comando solicitado.
+    if (args.hasOption('command')) {
+      final commandArg = args.getOption('command');
+      final input = commandArg.input as String?;
 
-    if (input != null && input.isNotEmpty) {
-      final cmd = runner.commands.firstWhere(
-        (command) => command.name == input,
-        orElse: () {
-          throw ArgumentError(
-            'Input $input is not a known command.',
-          );
-        },
-      );
+      if (input != null && input.isNotEmpty) {
+        final cmd = runner.commands.firstWhere(
+          (command) => command.name == input,
+          orElse: () {
+            throw ArgumentError(
+              'O comando "$input" não existe.',
+            );
+          },
+        );
 
-      return _renderCommandVerbose(cmd);
+        return _renderCommandVerbose(cmd);
+      }
     }
 
-    // 3. Cenário padrão: Verbose falso e nenhum comando específico passado
-    // Agora este código está vivo e será executado se o input estiver vazio!
+    // Caso padrão: mostra apenas a lista dos comandos.
     for (var command in runner.commands) {
       buffer.writeln(command.usage);
     }
@@ -68,22 +77,21 @@ class HelpCommand extends Command {
     return buffer.toString();
   }
 
-  // Método auxiliar privado para renderizar a saída detalhada de um comando
+  // Gera uma descrição detalhada de um comando.
   String _renderCommandVerbose(Command cmd) {
-    final indent = ' ' * 10;
+    const indent = '          ';
     final buffer = StringBuffer();
 
     buffer.writeln(cmd.usage);
-    buffer.writeln('$indent ${cmd.help ?? cmd.description}');
+    buffer.writeln('$indent${cmd.help ?? cmd.description}');
+    buffer.writeln('$indent}Opções:');
 
-    buffer.writeln('$indent Options:');
-
-    if (cmd.options.isNotEmpty) {
-      for (var option in cmd.options) {
-        buffer.writeln('$indent ${option.name}: ${option.help ?? "No description"}');
-      }
+    if (cmd.options.isEmpty) {
+      buffer.writeln('$indent(Nenhuma)');
     } else {
-      buffer.writeln('$indent (None)');
+      for (var option in cmd.options) {
+        buffer.writeln('$indent${option.usage}');
+      }
     }
 
     return buffer.toString();
