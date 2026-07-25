@@ -29,6 +29,9 @@ class SearchCommand extends Command {
   String get valueHelp => 'STRING';
 
   @override
+  String? get defaultValue => null;
+
+  @override
   String get help =>
       'Prints a list of links to Wikipedia articles that match the given term.';
 
