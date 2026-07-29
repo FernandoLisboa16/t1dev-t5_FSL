@@ -2,3 +2,10 @@
 [2026-06-12 14:03:42.205052 - errors] WARNING: ArgumentException: Commands can only have up to one argument. 
 [2026-06-12 14:03:58.088573 - errors] WARNING: ArgumentException: The first word of input must be a command. 
 [2026-06-12 16:49:20.268277 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:02:54.192756 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:02:59.406592 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:03:13.619269 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:03:40.104991 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:04:16.881386 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:04:28.507261 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 17:07:26.322375 - errors] WARNING: ArgumentException: Commands can only have up to one argument. 

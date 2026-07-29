@@ -1,0 +1,22 @@
+[
+  {
+    "nome": "Brasil",
+    "grupo": "C",
+    "rankingFifa": 5
+  },
+  {
+    "nome": "Argentina",
+    "grupo": "J",
+    "rankingFifa": 1
+  },
+  {
+    "nome": "Franca",
+    "grupo": "I",
+    "rankingFifa": 2
+  },
+  {
+    "nome": "Portugal",
+    "grupo": "K",
+    "rankingFifa": 6
+  }
+]
