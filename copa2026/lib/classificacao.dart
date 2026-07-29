@@ -203,7 +203,7 @@ void mostrarClassificacao(
 
 
     print(
-      '${posicao}º | '
+      '$posicaoº | '
       '${selecao.nome} | '
       '${selecao.pontos} | '
       '${selecao.saldoGols >= 0 ? "+" : ""}'
