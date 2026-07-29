@@ -1,0 +1,5 @@
+[2026-06-12 14:02:16.118832 - errors] WARNING: ArgumentException: The first word of input must be a command. 
+[2026-06-12 14:03:53.005468 - errors] WARNING: ArgumentException: Commands can only have up to one argument. 
+[2026-06-12 14:03:59.366478 - errors] WARNING: ArgumentException: Commands can only have up to one argument. 
+[2026-06-12 14:08:33.489288 - errors] WARNING: ArgumentException: Commands can only have up to one argument. 
+[2026-06-12 17:19:25.921560 - errors] WARNING: ArgumentException: Commands can only have up to one argument. 

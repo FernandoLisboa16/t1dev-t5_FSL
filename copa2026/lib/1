@@ -1,0 +1,12 @@
+import 'package:copa2026/grupo.dart';
+import 'package:copa2026/selecao.dart';
+
+void main() {
+  final brasil = Selecao(
+    nome: 'Brasil',
+    grupo: Grupo.C,
+    rankingFifa: 5,
+  );
+
+  print(brasil);
+}
