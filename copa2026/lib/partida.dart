@@ -1,44 +1,71 @@
 import 'dart:io';
 
 import 'selecao.dart';
+import 'partida_modelo.dart';
 
 
-// Lê números digitados pelo usuário com tratamento de erro
+
+final List<Partida> partidasRegistradas = [];
+
+
+
 int lerNumero(String mensagem) {
+
   while (true) {
+
     try {
+
       print(mensagem);
 
-      int valor = int.parse(stdin.readLineSync()!);
+      int valor = int.parse(
+        stdin.readLineSync()!,
+      );
+
 
       if (valor < 0) {
-        print('Erro: Digite um número positivo!');
+
+        print(
+          'Erro: Digite um número positivo!',
+        );
+
         continue;
+
       }
+
 
       return valor;
 
+
     } catch (e) {
-      print('Erro: Digite um placar válido!');
+
+      print(
+        'Erro: Digite um placar válido!',
+      );
+
     }
+
   }
+
 }
 
 
-// Registra uma partida entre duas seleções
+
+
+
 void registrarJogo(
   Selecao timeA,
   Selecao timeB,
 ) {
 
+
   print('\n==============================');
   print('      REGISTRAR PARTIDA');
   print('==============================');
 
-  print('${timeA.nome} x ${timeB.nome}\n');
+
+  print('${timeA.nome} x ${timeB.nome}');
 
 
-  // Entrada dos gols
 
   int golsA = lerNumero(
     'Gols do ${timeA.nome}:',
@@ -50,8 +77,6 @@ void registrarJogo(
   );
 
 
-
-  // Entrada dos cartões
 
   int amarelosA = lerNumero(
     'Cartões amarelos do ${timeA.nome}:',
@@ -74,27 +99,29 @@ void registrarJogo(
 
 
 
-  // Atualização dos gols
+  // Atualiza gols
 
   timeA.golsPro += golsA;
   timeA.golsSofridos += golsB;
+
 
   timeB.golsPro += golsB;
   timeB.golsSofridos += golsA;
 
 
 
-  // Atualização dos cartões
+  // Atualiza cartões
 
   timeA.cartoesAmarelos += amarelosA;
   timeB.cartoesAmarelos += amarelosB;
+
 
   timeA.cartoesVermelhos += vermelhosA;
   timeB.cartoesVermelhos += vermelhosB;
 
 
 
-  // Atualização da pontuação
+  // Atualiza pontos
 
   if (golsA > golsB) {
 
@@ -117,25 +144,20 @@ void registrarJogo(
 
 
 
-  // Resultado final
+  // Salva histórico da partida
 
-  print('\n==============================');
-  print('      PARTIDA FINALIZADA');
-  print('==============================');
+  partidasRegistradas.add(
 
-  print(
-    '${timeA.nome} $golsA x $golsB ${timeB.nome}',
+    Partida(
+      timeA: timeA,
+      timeB: timeB,
+      golsTimeA: golsA,
+      golsTimeB: golsB,
+    ),
+
   );
 
 
-  print('\nTabela atualizada:');
 
-  print(
-    '${timeA.nome}: ${timeA.pontos} pontos',
-  );
-
-  print(
-    '${timeB.nome}: ${timeB.pontos} pontos',
-  );
-
+  print('\nPartida registrada com sucesso!');
 }
