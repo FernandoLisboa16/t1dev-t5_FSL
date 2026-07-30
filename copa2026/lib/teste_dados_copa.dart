@@ -1,61 +1,33 @@
 import 'carregador_json.dart';
-
+import 'selecao.dart';
 
 Future<void> main() async {
-
   print('======================================');
   print('     TESTE DADOS COPA 2026');
   print('======================================');
 
-
   try {
-
-    final dados = await carregarDadosCopa();
-
+    List<Selecao> selecoes = await carregarDadosCopa();
 
     print('\nDados carregados com sucesso!');
-    print('Total de selecoes: ${dados.length}');
+    print('Total de selecoes: ${selecoes.length}\n');
 
-
-    print('\n======================================');
-    print('          SELECOES CARREGADAS');
+    print('======================================');
+    print('      SELECOES CARREGADAS');
     print('======================================');
 
+    for (var selecao in selecoes) {
+      String grupo = selecao.grupo.toString().split('.').last;
 
-    for (var selecao in dados) {
-
-      print(
-        'Nome: ${selecao['nome']}',
-      );
-
-      print(
-        'Grupo: ${selecao['grupo']}',
-      );
-
-      print(
-        'Ranking FIFA: ${selecao['rankingFifa']}',
-      );
-
-      print(
-        '------------------------------',
-      );
-
+      print('Nome: ${selecao.nome}');
+      print('Grupo: $grupo');
+      print('Ranking FIFA: ${selecao.rankingFifa}');
+      print('------------------------------');
     }
-
-
   } catch (erro) {
-
-
     print('\nErro ao carregar dados da Copa:');
-
-    print(
-      erro.toString(),
-    );
-
-
+    print(erro);
   }
 
-
   print('\nTeste finalizado.');
-
 }

@@ -1,18 +1,50 @@
 [
   {
+    "nome": "Mexico",
+    "grupo": "A",
+    "rankingFifa": 13
+  },
+  {
+    "nome": "Africa do Sul",
+    "grupo": "A",
+    "rankingFifa": 61
+  },
+  {
+    "nome": "Coreia do Sul",
+    "grupo": "A",
+    "rankingFifa": 23
+  },
+  {
+    "nome": "Republica Tcheca",
+    "grupo": "A",
+    "rankingFifa": 43
+  },
+
+  {
     "nome": "Brasil",
     "grupo": "C",
     "rankingFifa": 5
   },
   {
+    "nome": "Marrocos",
+    "grupo": "C",
+    "rankingFifa": 14
+  },
+  {
+    "nome": "Haiti",
+    "grupo": "C",
+    "rankingFifa": 87
+  },
+  {
+    "nome": "Escocia",
+    "grupo": "C",
+    "rankingFifa": 38
+  },
+
+  {
     "nome": "Argentina",
     "grupo": "J",
     "rankingFifa": 1
-  },
-  {
-    "nome": "Franca",
-    "grupo": "I",
-    "rankingFifa": 2
   },
   {
     "nome": "Portugal",

@@ -1,52 +1,40 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'grupo.dart';
 import 'logs.dart';
+import 'selecao.dart';
 
-
-
-Future<List<Map<String, dynamic>>> carregarDadosCopa() async {
-
-
+Future<List<Selecao>> carregarDadosCopa() async {
   try {
-
-
-    File arquivo = File(
-      'lib/dados_copa.json',
-    );
-
+    File arquivo = File('lib/dados_copa.json');
 
     String conteudo = await arquivo.readAsString();
 
+    List dados = jsonDecode(conteudo);
 
-    List dados = jsonDecode(
-      conteudo,
-    );
+    List<Selecao> selecoes = [];
 
+    for (var item in dados) {
+      Grupo grupo = Grupo.values.firstWhere(
+        (g) => g.toString().split('.').last == item['grupo'],
+      );
 
-    registrarLog(
-      'Arquivo JSON carregado com sucesso',
-    );
+      selecoes.add(
+        Selecao(
+          nome: item['nome'],
+          grupo: grupo,
+          rankingFifa: item['rankingFifa'],
+        ),
+      );
+    }
 
+    registrarLog('Dados da Copa carregados com sucesso');
 
-    return List<Map<String, dynamic>>.from(
-      dados,
-    );
+    return selecoes;
+  } catch (erro) {
+    registrarLog('Erro ao carregar dados: $erro');
 
-
-  } catch (e) {
-
-
-    registrarLog(
-      'Erro ao carregar JSON: $e',
-    );
-
-
-    throw Exception(
-      'Nao foi possivel carregar os dados da Copa',
-    );
-
-
+    throw Exception('Erro ao carregar dados da Copa');
   }
-
 }
